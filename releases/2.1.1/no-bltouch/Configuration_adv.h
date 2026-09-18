@@ -1486,18 +1486,22 @@
 
   // Reverse SD sort to show "more recent" files first, according to the card's FAT.
   // Since the FAT gets out of order with usage, SDCARD_SORT_ALPHA is recommended.
+
+  // Organiza os arquivos do cartão SD mostrando os mais recentes primeiro
   #define SDCARD_RATHERRECENTFIRST
 
-  #define SD_MENU_CONFIRM_START             // Confirm the selected SD file before printing
+  // Pede confirmação na tela antes de iniciar a execução do arquivo selecionado
+  #define SD_MENU_CONFIRM_START
 
-  //#define NO_SD_AUTOSTART                 // Remove auto#.g file support completely to save some Flash, SRAM
-  //#define MENU_ADDAUTOSTART               // Add a menu option to run auto#.g files
+  //#define NO_SD_AUTOSTART                 // Desative para remover o suporte a arquivos auto#.g (economiza memória Flash/SRAM)
+  //#define MENU_ADDAUTOSTART               // Adiciona uma opção no menu para executar arquivos auto#.g manualmente
 
-  //#define BROWSE_MEDIA_ON_INSERT          // Open the file browser when media is inserted
+  //#define BROWSE_MEDIA_ON_INSERT          // Abre o navegador de arquivos automaticamente ao inserir o cartão SD
 
-  //#define MEDIA_MENU_AT_TOP               // Force the media menu to be listed on the top of the main menu
+  //#define MEDIA_MENU_AT_TOP               // Força o menu do cartão SD a aparecer no topo do menu principal
 
-  #define EVENT_GCODE_SD_ABORT "G28XY"      // G-code to run on SD Abort Print (e.g., "G28XY" or "G27")
+  // Desliga os aquecedores (bico e mesa) ao cancelar a execução, evitando mover os eixos (G28)
+  #define EVENT_GCODE_SD_ABORT "M104 S0\nM140 S0"
 
   #if ENABLED(PRINTER_EVENT_LEDS)
     #define PE_LEDS_COMPLETED_TIME  (30*60) // (seconds) Time to keep the LED "done" color before restoring normal illumination
